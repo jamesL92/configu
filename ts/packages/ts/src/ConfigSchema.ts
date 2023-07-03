@@ -56,6 +56,7 @@ export abstract class ConfigSchema implements IConfigSchema {
           validator.isHash(value, 'sha512'),
         Country: ({ value }) => validator.isISO31661Alpha2(value) || validator.isISO31661Alpha3(value),
         Currency: ({ value }) => validator.isISO4217(value),
+        Binary: ({ value }) => /^[01]*$/.test(value),
       },
     },
   };

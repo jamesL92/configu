@@ -53,6 +53,7 @@ def from_dict(f: Callable[[Any], T], x: Any) -> Dict[str, T]:
 
 class CfguType(Enum):
     BASE64 = "Base64"
+    BINARY = "Binary"
     BOOLEAN = "Boolean"
     COLOR = "Color"
     CONNECTION_STRING = "ConnectionString"

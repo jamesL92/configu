@@ -19,6 +19,7 @@ from ..utils import error_message, is_valid_name
 
 class ConfigSchemaDefinition:
     _cs_regex = r"^(?:([^:/?#\s]+):/{2})?(?:([^@/?#\s]+)@)?([^/?#\s]+)?(?:/([^?#\s]*))?(?:[?]([^#\s]+))?\S*$"  # noqa: E501
+    _binary_regex = r"^[01]*$"
     NAME: str = "cfgu"
     EXT: str = ".cfgu"
     VALIDATORS: Dict[str, Callable[[str], bool]] = {
@@ -56,6 +57,10 @@ class ConfigSchemaDefinition:
             or pyvalidator.is_hash(value, "sha512")
         ),
         "Currency": pyvalidator.is_currency,
+        "Binary": lambda value: re.fullmatch(
+            ConfigSchemaDefinition._binary_regex, value
+        )
+        is not None,
     }
     PROPS = list(Cfgu.__annotations__.keys())
 

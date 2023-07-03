@@ -4,6 +4,7 @@
       "title": "CfguType",
       "enum": [
         "Base64",
+        "Binary",
         "Boolean",
         "Color",
         "ConnectionString",
